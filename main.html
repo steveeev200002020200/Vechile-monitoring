@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Monitoring System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .upload-area {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #videoInput {
+            display: none;
+        }
+
+        #startButton {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #startButton:hover {
+            background-color: #0056b3;
+        }
+
+        .output-log {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Monitoring System</h1>
+        <div class="upload-area">
+            <input type="file" id="videoInput" accept="video/*" onchange="loadVideo(event)">
+            <button id="startButton" onclick="startProcessing()">Start</button>
+        </div>
+        <div class="output-log" id="outputLog">
+            <!-- Output log will appear here -->
+        </div>
+        <video id="videoPlayer" controls style="display: none;"></video>
+    </div>
+
+    <script>
+        function startProcessing() {
+            var videoInput = document.getElementById('videoInput');
+            var outputLog = document.getElementById('outputLog');
+
+            if (!videoInput.files || !videoInput.files[0]) {
+                alert('Please select a video file.');
+                return;
+            }
+
+            outputLog.innerHTML = 'Starting processing...\n';
+
+            // Here you can add your machine learning model processing logic
+            // For demonstration purpose, let's simulate processing for 5 seconds
+            setTimeout(function() {
+                outputLog.innerHTML += 'Processing complete. Results will appear here.';
+            }, 5000);
+        }
+
+        function loadVideo(event) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoInput = event.target.files[0];
+            
+            videoPlayer.src = URL.createObjectURL(videoInput);
+            videoPlayer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
